@@ -1,66 +1,125 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Why Wrestle? | Bonners Ferry Wrestling</title>
   <style>
+    html {
+      scroll-behavior: smooth;
+    }
     body {
       margin: 0;
       font-family: 'Segoe UI', Roboto, sans-serif;
       background-color: #f5f5f5;
       color: #1a1a1a;
+      text-align: center;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
-      text-align: center;
+      opacity: 0;
+      animation: pageFadeIn 1.2s ease-in forwards;
     }
-    header {
+    header, footer {
       background: linear-gradient(180deg, #0a2540, #1e3a5f);
-      color: white;
+      padding: 32px 20px;
       width: 100%;
-      padding: 60px 20px 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      animation: fadeIn 1.2s ease-in;
     }
-    header img {
-      max-width: 120px;
-      margin-bottom: 15px;
+    header img, footer img {
+      height: 80px;
+      width: auto;
+      border-radius: 8px;
+      transition: height 0.3s ease, transform 0.3s ease, box-shadow 0.4s ease;
+      animation: fadeSlide 1.5s ease-out;
     }
-    h1 {
-      font-size: 2.2em;
-      margin: 10px 0 5px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
+    header img:hover, footer img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 25px rgba(255, 255, 255, 0.6),
+                  0 0 50px rgba(0, 122, 255, 0.4);
     }
     main {
-      max-width: 700px;
-      padding: 40px 20px 60px;
-      line-height: 1.6;
-      font-size: 1.1em;
+      flex: 1;
+      padding: 40px 20px;
+      max-width: 800px;
+      opacity: 0;
+      animation: contentFade 2s ease-in forwards;
+      animation-delay: 0.8s;
     }
-    footer {
-      background-color: #0a2540;
-      color: white;
-      width: 100%;
-      text-align: center;
-      padding: 20px 0;
-      font-style: italic;
-      letter-spacing: 0.5px;
+    h1 {
+      font-size: 2em;
+      color: #0a2540;
+      animation: fadeSlide 1.5s ease-out;
+    }
+    p {
+      font-size: 1.1em;
+      line-height: 1.6;
+      animation: fadeSlide 1.8s ease-out;
+    }
+
+    /* Animations */
+    @keyframes pageFadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes pageFadeOut {
+      from { opacity: 1; }
+      to { opacity: 0; }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes fadeSlide {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes contentFade {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      header img, footer img {
+        height: 60px;
+      }
+      h1 {
+        font-size: 1.6em;
+      }
+      p {
+        font-size: 1em;
+      }
+    }
+    @media (max-width: 480px) {
+      header img, footer img {
+        height: 50px;
+      }
+      main {
+        padding: 24px 16px;
+      }
     }
   </style>
 </head>
 <body>
   <header>
-    <img src="Clipped_image_20251101_162537.png" alt="Bonners Ferry Wrestling Logo">
-    <h1>Why Wrestle?</h1>
+    <img src="logo_cropped.png" alt="Bonners Ferry Logo">
   </header>
   <main>
-    <p>Wrestling builds character, discipline, and heart. It challenges you to grow stronger not just physically, but mentally. It’s about more than just winning or losing — it’s about becoming better every single day.</p>
-    <p>Every match tests your limits and every practice shapes your future. You learn to dig deep when things get tough, to push through when others would quit.</p>
-    <p>In wrestling, you find a family. You find purpose. You find yourself.</p>
+    <h1>Why Wrestle?</h1>
+    <p>It's about more than just winning or losing. Wrestling builds strength, discipline, and heart. Every practice shapes your body and mind, teaching you to push past limits and discover who you really are. Be the change you want to see — wrestle.</p>
   </main>
   <footer>
-    Be the change you want to see wrestle.
+    <img src="logo_cropped.png" alt="Bonners Ferry Logo">
   </footer>
+  <script>
+    window.addEventListener('beforeunload', () => {
+      document.body.style.animation = 'pageFadeOut 0.5s forwards';
+    });
+  </script>
 </body>
 </html>
